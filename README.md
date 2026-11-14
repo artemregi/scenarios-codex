@@ -67,16 +67,16 @@ Codex работает в папке, которую ты ему откроеш�
 ```
 Установи мне систему сценариев. Делай сам, команды запускай сам, у меня спрашивай только ключи и вход в аккаунты. Долгие команды не прерывай, жди до 20 минут.
 
-1. Определи систему: macOS или Windows.
+1. Определи систему: macOS или Windows. Если на Windows команда падает с ошибкой про execution policy («running scripts is disabled») – выполни Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser и повтори.
 2. Python 3.10 или новее. Проверь, есть ли он. Если нет или версия старше:
    Mac – поставь uv: curl -LsSf https://astral.sh/uv/install.sh | sh, потом ~/.local/bin/uv python install 3.12, путь к этому Python узнай командой ~/.local/bin/uv python find 3.12 и используй его в пункте 5. Пароль от компьютера не нужен.
-   Windows – winget install -e --id Python.Python.3.12 --scope user. Если python не находится или открывает Microsoft Store – используй py -3.12.
+   Windows – поставь uv: powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex", потом $env:USERPROFILE\.local\bin\uv.exe python install 3.12 и узнай путь командой $env:USERPROFILE\.local\bin\uv.exe python find 3.12. Права администратора не нужны. Команда python, которая открывает Microsoft Store, не считается.
    ffmpeg не обязателен: на Mac поставь его, только если уже есть brew (brew install ffmpeg), на Windows – winget install -e --id Gyan.FFmpeg.
 3. Проверь, что установлен Google Chrome. Если нет – скажи мне поставить его с google.com/chrome и подожди.
 4. Ночью система работает без этого приложения, через программу codex. Проверь, есть ли codex в PATH или в ~/.local/bin (Windows – %LOCALAPPDATA%\Programs\OpenAI\Codex\bin). Если нет – установи:
    Mac – curl -fsSL https://chatgpt.com/codex/install.sh | sh
    Windows – powershell -ExecutionPolicy ByPass -c "irm https://chatgpt.com/codex/install.ps1 | iex"
-5. Скачай https://github.com/artemregi/scenarios-codex/archive/refs/heads/main.zip и распакуй в мою домашнюю папку так, чтобы получилась папка scenarios-codex, а внутри сразу файлы install.py, run.py и другие. Если папка scenarios-codex уже есть – не трогай в ней .env, anketa.md, knowledge, bloggers.txt, ig_profile и data, остальные файлы замени. В папке scenarios-codex запусти install.py тем Python, который нашёл или поставил в пункте 2.
+5. Скачай https://github.com/artemregi/scenarios-codex/archive/refs/heads/main.zip и распакуй в мою домашнюю папку так, чтобы получилась папка scenarios-codex, а внутри сразу файлы install.py, run.py и другие. Если папка scenarios-codex уже есть – не трогай в ней .env, anketa.md, knowledge, bloggers.txt, ig_profile и data, остальные файлы замени. На Windows скачивай через Invoke-WebRequest и распаковывай через Expand-Archive. В папке scenarios-codex запусти install.py тем Python, который нашёл или поставил в пункте 2.
 6. Открой файл .env в папке scenarios-codex. По очереди попроси у меня ключи и впиши: GROQ_API_KEY, TELEGRAM_BOT_TOKEN, GEMINI_API_KEY, ELEVENLABS_API_KEY. Если ключа нет – пропусти. Значения ключей никогда не выводи на экран.
 7. Узнай мой chat_id: запроси getUpdates у моего бота (я уже написал ему «привет») и впиши TELEGRAM_CHAT_ID в .env. Если ответ пустой – попроси меня ещё раз написать боту и повтори.
 8. Запусти login.py из папки scenarios-codex Python из .venv (Mac – .venv/bin/python login.py, Windows – .venv\Scripts\python.exe login.py). Откроется Chrome. Скажи мне войти в мой отдельный аккаунт Instagram и жди, пока окно закроется само.

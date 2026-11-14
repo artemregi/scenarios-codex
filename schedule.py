@@ -39,7 +39,7 @@ def on(at="03:00"):
         ps = ("$ProgressPreference = 'SilentlyContinue';"
               f"$a = New-ScheduledTaskAction -Execute '{q(sys.executable)}' -Argument '\"{q(RUN)}\"' -WorkingDirectory '{q(config.ROOT)}';"
               f"$t = New-ScheduledTaskTrigger -Daily -At '{at}';"
-              "$s = New-ScheduledTaskSettingsSet -WakeToRun -StartWhenAvailable -ExecutionTimeLimit (New-TimeSpan -Hours 3);"
+              "$s = New-ScheduledTaskSettingsSet -WakeToRun -StartWhenAvailable -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -ExecutionTimeLimit (New-TimeSpan -Hours 3);"
               f"Register-ScheduledTask -TaskName '{NAME}' -Action $a -Trigger $t -Settings $s -Force | Out-Null")
         # закодированная команда: кавычки и кириллица в пути (C:\Users\Ира\...) не ломают PowerShell
         enc = base64.b64encode(ps.encode("utf-16-le")).decode()

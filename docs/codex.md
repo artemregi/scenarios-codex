@@ -58,7 +58,7 @@ ChatGPT.
 | Chrome (`login.py`, `collect.py`) из Full access | ⏳ нужна подписка Plus |
 | `bank.py` в фоне живёт после ответа Codex в приложении | ⏳ нужна подписка Plus |
 | Загрузка `AGENTS.md` из открытой папки | ⏳ нужна подписка Plus |
-| Windows: агент в PowerShell, установка Python через winget без администратора | ⏳ нужен компьютер на Windows |
+| Windows: агент в PowerShell, Python через uv без администратора, ночной запуск из Планировщика (в том числе от батареи) | ⏳ нужен компьютер на Windows |
 
 ## Чем отличается от Claude Code
 
